@@ -13,6 +13,7 @@ const SingleProduct = ({ product, cart, addToCartProduct }) => {
   const { name, price, img, id } = product;
   const [addSingleProduct, setAddSingleProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  console.log(setQuantity);
 
   //get single product from database using id
   useEffect(() => {

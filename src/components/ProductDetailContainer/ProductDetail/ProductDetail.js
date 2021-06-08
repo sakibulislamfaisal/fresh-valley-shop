@@ -43,21 +43,7 @@ const ProductDetail = ({ cart, addToCartProduct }) => {
           <p className="mb=0">{description}</p>
           <div className="d-flex mt-4">
             <h2 className="mt-2 text-green-800">Product Price : {price}</h2>
-            {/* <div className="cart-item ml-4">
-              <button
-                className="btn mr-4 cart-quantity"
-                onClick={() => setQuantity(quantity === 1 ? 1 : quantity - 1)}
-              >
-                -
-              </button>
-              {quantity}
-              <button
-                className="btn ml-4 cart-quantity "
-                onClick={() => setQuantity(quantity + 1)}
-              >
-                +
-              </button>
-            </div> */}
+
             <div className="cart-add-food py-5 ">
               <button
                 className="bg-green-700 hover:bg-pink-700 text-white py-3 px-4  mt-3  rounded cart-add"

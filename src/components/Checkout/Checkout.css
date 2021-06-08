@@ -1,5 +1,5 @@
 .prices {
-  margin-left: 970px;
+  margin-left: 865px;
 }
 
 .checkout-btn {
@@ -21,7 +21,7 @@
 
 @media (min-width: 576px) and (max-width: 767px) {
   .prices {
-    margin-left: 400px;
+    margin-left: 340px;
   }
   .checkout-btn {
     margin-left: 400px;
@@ -30,7 +30,7 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
   .prices {
-    margin-left: 570px;
+    margin-left: 500px;
   }
   .checkout-btn {
     margin-left: 400px;
@@ -39,7 +39,7 @@
 
 @media (min-width: 991px) and (max-width: 1199px) {
   .prices {
-    margin-left: 800px;
+    margin-left: 715px;
   }
   .checkout-btn {
     margin-left: 400px;

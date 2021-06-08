@@ -1,8 +1,11 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Checkout.css";
-const Checkout = ({ cart, removeAllCart }) => {
+
+const Checkout = ({ cart, removeAllCart, removeSingleProduct }) => {
   console.log("from checkout page", cart);
   const [update, setUpdate] = useState();
   const [updatePrice, setUpdatePrice] = useState();
@@ -28,6 +31,7 @@ const Checkout = ({ cart, removeAllCart }) => {
                   <th>Product Quantity</th>
                   <th>Product Category</th>
                   <th>Product Price</th>
+                  <th>Action</th>
                 </tr>
               </thead>
 
@@ -66,6 +70,13 @@ const Checkout = ({ cart, removeAllCart }) => {
                         </div>
                       </td>
                       <td className="align-middle">${product.price}</td>
+                      <td className="align-middle">
+                        <FontAwesomeIcon
+                          onClick={() => removeSingleProduct(product.id)}
+                          className="text-pink-500 text-xl cursor-pointer"
+                          icon={faTrash}
+                        />
+                      </td>
                     </tr>
                   );
                 })}
@@ -73,7 +84,7 @@ const Checkout = ({ cart, removeAllCart }) => {
             </Table>
             <div className="total-item flex ">
               <h5 className="text-2xl mt-1">Total</h5>
-              <h5 className="prices">${price}</h5>
+              <h5 className="prices">= ${price}</h5>
             </div>
             <div className="checkout-section-area flex">
               <Link to="/checkout" style={styleCheckoutButton}>

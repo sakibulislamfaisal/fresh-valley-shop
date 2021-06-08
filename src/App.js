@@ -24,6 +24,12 @@ function App() {
     setCart([]);
   };
 
+  //remove single Product from carts
+  const removeSingleProduct = (id) => {
+    const cartItem = cart.filter((item) => item.id !== id);
+    setCart(cartItem);
+  };
+
   return (
     <>
       <Router>
@@ -36,7 +42,11 @@ function App() {
           </Route>
           <Route path="/checkout">
             <Header cart={cart}></Header>
-            <Checkout cart={cart} removeAllCart={removeAllCart} />
+            <Checkout
+              cart={cart}
+              removeAllCart={removeAllCart}
+              removeSingleProduct={removeSingleProduct}
+            />
           </Route>
           <Route path="*">
             <NotFound />
