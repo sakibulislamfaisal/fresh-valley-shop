@@ -1,0 +1,32 @@
+.banner-title {
+  color: black;
+}
+.search-box input {
+  text-align: center;
+  border: 1px solid green;
+}
+.search-box {
+  position: relative;
+}
+.search-box .search-btn {
+  position: absolute;
+  top: 24px;
+  right: -66px;
+}
+.search-btn {
+  width: 120px;
+}
+
+@media (max-width: 575px) {
+  .search-box .search-btn {
+    position: absolute;
+    top: 24px;
+    right: 1px;
+  }
+  .search-box input {
+    text-align: center;
+    border: 1px solid green;
+    width: 240px !important;
+    margin-left: 100px;
+  }
+}

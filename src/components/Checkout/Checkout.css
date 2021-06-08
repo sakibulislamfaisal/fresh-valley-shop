@@ -1,0 +1,47 @@
+.prices {
+  margin-left: 970px;
+}
+
+.checkout-btn {
+  margin-left: 970px;
+}
+
+.empty-btn {
+  margin-left: -290px;
+}
+
+@media (max-width: 575px) {
+  .prices {
+    margin-left: 360px;
+  }
+  .checkout-btn {
+    margin-left: 360px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .prices {
+    margin-left: 400px;
+  }
+  .checkout-btn {
+    margin-left: 400px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .prices {
+    margin-left: 570px;
+  }
+  .checkout-btn {
+    margin-left: 400px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .prices {
+    margin-left: 800px;
+  }
+  .checkout-btn {
+    margin-left: 400px;
+  }
+}
