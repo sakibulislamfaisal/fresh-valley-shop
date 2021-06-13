@@ -1,16 +1,21 @@
+.icon-button {
+  position: relative;
+  left: 50px;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .icon-button {
     margin-left: -650px !important;
   }
 }
 
-@media (min-width: 576px) and (max-width:767px) {
+@media (min-width: 576px) and (max-width: 767px) {
   .icon-button {
     margin-left: -450px !important;
   }
 }
 
-@media (max-width: 575px){
+@media (max-width: 575px) {
   .icon-button {
     margin-left: -380px !important;
   }

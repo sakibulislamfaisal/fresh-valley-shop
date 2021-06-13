@@ -13,7 +13,7 @@ const SingleProduct = ({ product, cart, addToCartProduct }) => {
   const { name, price, img, id } = product;
   const [addSingleProduct, setAddSingleProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  console.log(setQuantity);
+  // console.log(setQuantity);
 
   //get single product from database using id
   useEffect(() => {
@@ -63,7 +63,9 @@ const SingleProduct = ({ product, cart, addToCartProduct }) => {
             </div>
             <div className="card-footer">
               <div className="d-flex wrap">
-                <h5 className="price text-indigo font-bold">${price}</h5>
+                <h5 className="price text-indigo font-bold">
+                  ${Number(price)}
+                </h5>
                 <NavLink
                   to="/checkout"
                   style={styles}

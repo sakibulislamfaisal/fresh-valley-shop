@@ -11,7 +11,19 @@ const ProductDetail = ({ cart, addToCartProduct }) => {
   const { id } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [allPrd, setAllPrd] = useState([]);
   // console.log(id);
+  const [quantity, setQuantity] = useState(1);
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5200/products`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAllPrd(data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  // const { _id } = allPrd;
+  // console.log(_id);
 
   //get single product from database using id
   useEffect(() => {
@@ -22,12 +34,16 @@ const ProductDetail = ({ cart, addToCartProduct }) => {
   }, [id]);
   //console.log(singleProduct);
   const { name, description, price, img } = singleProduct;
-
+  //const price = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   //handleAddToCart
   const handleCartAdd = (singleProduct) => {
+    singleProduct.quantity = quantity;
     addToCartProduct(singleProduct);
-    setIsSuccess(true);
-    console.log(singleProduct);
+    const check_index = cart.findIndex((item) => item.id === singleProduct.id);
+    if (check_index !== -1) {
+      cart[check_index].quantity++;
+      console.log("Quantity updated:", cart);
+    }
   };
 
   //success message
@@ -42,7 +58,9 @@ const ProductDetail = ({ cart, addToCartProduct }) => {
           <h1 className="mb-2 text-purple-700">{name}</h1>
           <p className="mb=0">{description}</p>
           <div className="d-flex mt-4">
-            <h2 className="mt-2 text-green-800">Product Price : {price}</h2>
+            <h2 className="mt-2 text-green-800">
+              Product Price : {Number(price)}
+            </h2>
 
             <div className="cart-add-food py-5 ">
               <button

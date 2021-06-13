@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IconButton, Badge } from "@material-ui/core";
 import "./Header.css";
 import { ShoppingCart } from "@material-ui/icons";
-const Header = ({cart}) => {
+import { userContext } from "../../../App";
+
+const Header = ({ cart }) => {
+  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  console.log("From header Logged In user", loggedInUser);
+
   let style = {
     textDecoration: "none",
     padding: "15px",
@@ -33,9 +38,10 @@ const Header = ({cart}) => {
               <Link style={style} to="/admin">
                 Admin
               </Link>
-              <Link style={style} to="/deals">
-                Deals
+              <Link style={style} to="/delivery">
+                Delivery
               </Link>
+
               <IconButton
                 component={Link}
                 to="/checkout"
@@ -47,11 +53,49 @@ const Header = ({cart}) => {
                   <ShoppingCart />
                 </Badge>
               </IconButton>
-              <Link style={style} to="/login">
-                <button className="bg-blue-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full ">
-                  Login
+
+              {loggedInUser && loggedInUser.username ? (
+                <Link style={style}>{loggedInUser.username}</Link>
+              ) : (
+                <Link style={style}>{loggedInUser.displayName}</Link>
+              )}
+
+              {/* {loggedInUser && (
+                <NavDropdown title={loggedInUser.username}>
+                  <NavDropdown.Item>SignOut</NavDropdown.Item>
+                </NavDropdown>
+              )} */}
+
+              {loggedInUser.email ? (
+                <Link style={style} to="/signup">
+                  <button
+                    onClick={() => setLoggedInUser("")}
+                    className="bg-red-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full "
+                  >
+                    SignOut
+                  </button>
+                </Link>
+              ) : (
+                <Link style={style} to="/signup">
+                  <button className="bg-blue-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full ">
+                    Login
+                  </button>
+                </Link>
+              )}
+              {/* {auth.user ? (
+                <button
+                  onClick={auth.signOut()}
+                  className="bg-blue-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full "
+                >
+                  Logout
                 </button>
-              </Link>
+              ) : (
+                <Link style={style} to="/login">
+                  <button className="bg-blue-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full ">
+                    Login
+                  </button>
+                </Link>
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
