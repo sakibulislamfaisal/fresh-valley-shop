@@ -17,7 +17,7 @@ form {
   font-size: 12px;
 }
 
-input {
+input , textarea {
   display: block;
   box-sizing: border-box;
   width: 100%;

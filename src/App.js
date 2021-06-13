@@ -76,7 +76,7 @@ function App() {
  const [deliveryInfo,setDeliveryInfo] = useState({
       name :  null,
       phone : null,
-      roadNo:  null,
+      road:  null,
       area : null,
       address: null,
  })
