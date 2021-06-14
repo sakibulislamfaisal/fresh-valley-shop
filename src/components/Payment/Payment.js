@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import React from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "./CheckoutForm";
+import SplitForm from "./SplitForm";
 
-const Payment = (props) => {
-  const [paymentSuccess, setPaymentSuccess] = useState(null);
-  const [paymentError, setPaymentError] = useState(null);
-  const stripe = useStripe();
-  const elements = useElements();
-  useEffect(() => {
-    props.paidToUser(paymentSuccess);
-  }, [paymentSuccess]);
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-    console.log(error, paymentMethod);
-    if (error) {
-      setPaymentError(error);
-      setPaymentSuccess(null);
-    } else {
-      setPaymentSuccess(paymentMethod);
-      setPaymentError(null);
-    }
-  };
-
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe("pk_test_5u4MdV0k3HrcnkqeNfD3MCIF007tWoO0eL");
+const Payment = ({handlePlaceOrder}) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button className="btn btn-danger my-3" type="submit" disabled={!stripe}>
-        Pay
-      </button>
-      {paymentError && (
-        <p style={{ color: "red" }}>Failed, {paymentError.message}</p>
-      )}
-      {paymentSuccess && <p style={{ color: "green" }}>Payment Successful</p>}
-    </form>
+    <Elements stripe={stripePromise}>
+      {/* <CheckoutForm></CheckoutForm> */}
+      <SplitForm handlePlaceOrder={handlePlaceOrder}></SplitForm>
+    </Elements>
   );
 };
 

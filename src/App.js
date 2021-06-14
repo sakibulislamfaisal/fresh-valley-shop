@@ -11,12 +11,17 @@ import Navigation from "./components/Admin/Navigation/Navigation";
 import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import ShowAllProduct from "./components/Admin/ShowAllProduct/ShowAllProduct";
 import Delivery from "./components/Delivery/Delivery";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Banner from "./components/Home/Banner/Banner";
+import SearchItemResult from "./components/SearchItemResult/SearchItemResult";
+import Footer from "./components/Footer/Footer";
+import Welcome from "./components/Admin/WelCome/Welcome";
 export const userContext = createContext();
 
 //get localStorage items
 const getLocalStorageItems = () => {
   let items = localStorage.getItem("cart");
-  console.log(items);
+  //console.log(items);
   if (items) {
     return JSON.parse(localStorage.getItem("cart"));
   } else {
@@ -37,7 +42,7 @@ const getLocalStorageItems = () => {
 function App() {
   const [cart, setCart] = useState(getLocalStorageItems());
   const [loggedInUser, setLoggedInUser] = useState({});
-  console.log(loggedInUser);
+  //console.log(loggedInUser);
 
   //add to cart foods
   const addToCartProduct = (data) => {
@@ -47,7 +52,7 @@ function App() {
       setCart(newCart);
     }
   };
-  console.log(cart);
+  // console.log(cart);
 
   //remove all cart
   const removeAllCart = () => {
@@ -70,67 +75,76 @@ function App() {
   //   sessionStorage.setItem("users", JSON.stringify(loggedInUser));
   // }, [loggedInUser]);
 
+  // delivery product with information just four step
+  //1. delivery info send first
+  // const [deliveryInfo, setDeliveryInfo] = useState({});
 
- // delivery product with information just four step 
- //1. delivery info send first
- const [deliveryInfo,setDeliveryInfo] = useState({
-      name :  null,
-      phone : null,
-      road:  null,
-      area : null,
-      address: null,
- })
+  // const handleDeliveryInfo = (data) => {
+  //   setDeliveryInfo(data);
+  // };
 
- const handleDeliveryInfo = data =>{
-    setDeliveryInfo(data);
- }
- 
- //2.check which user request to delivery product
- const [userEmail,setUserEmail] = useState(null);
+  // //2.check which user request to delivery product
+  // const [userEmail, setUserEmail] = useState(null);
 
- const handleUserEmail = email => {
-    setUserEmail(email);
- }
+  // const handleUserEmail = (email) => {
+  //   setUserEmail(email);
+  // };
 
- //checkout the product with
- const checkOutProduct = (productId, productQuantity) => {
-  const newCart = cart.map((item) => {
-    if (item.id === productId) {
-      item.quantity = productQuantity;
-    }
-    return item;
-  });
+  // //checkout the product with
+  // const checkOutProduct = (productId, productQuantity) => {
+  //   const newCart = cart.map((item) => {
+  //     if (item.id === productId) {
+  //       item.quantity = productQuantity;
+  //     }
+  //     return item;
+  //   });
 
-  const filteredCart = newCart.filter((item) => item.quantity > 0);
-  setCart(filteredCart);
-};
-//order products to
-const [orderId,setOrderId] = useState(null);
-const clearCart = () => {
-  const orderedItems = cart.map((cartItem) => {
-    return {productName : cartItem.name, productId: cartItem.id, quantity: cartItem.quantity };
-  });
+  //   const filteredCart = newCart.filter((item) => item.quantity > 0);
+  //   setCart(filteredCart);
+  // };
+  // //order products to
+  // const [orderId, setOrderId] = useState(null);
+  // const clearCart = () => {
+  //   const orderedItems = cart.map((cartItem) => {
+  //     return {
+  //       productName: cartItem.name,
+  //       productId: cartItem.id,
+  //       quantity: cartItem.quantity,
+  //     };
+  //   });
 
-  const orderDetailsData = { userEmail, orderedItems, deliveryInfo };
-  fetch("http://localhost:5200/submit-order", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(orderDetailsData),
-  })
-    .then((res) => res.json())
-    .then((data) => setOrderId(data._id));
-  console.log(orderId);
+  //   console.log(userEmail, orderedItems, deliveryInfo);
 
-  setCart([]);
-};
+  //   const orderDetailsData = { userEmail, orderedItems, deliveryInfo };
+  //   fetch("http://localhost:5200/submit-order", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(orderDetailsData),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  //   // console.log(orderId);
+
+  //   setCart([]);
+  // };
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
           <Route exact path="/">
             <Home cart={cart} addToCartProduct={addToCartProduct} />
+          </Route>
+
+          <Route path="/search/:searchItem">
+            <Header cart={cart}></Header>
+            <Banner></Banner>
+            <SearchItemResult
+              cart={cart}
+              addToCartProduct={addToCartProduct}
+            ></SearchItemResult>
+            <Footer />
           </Route>
           <Route path="/product/product-details/:id">
             <ProductContainer cart={cart} addToCartProduct={addToCartProduct} />
@@ -142,36 +156,45 @@ const clearCart = () => {
               removeAllCart={removeAllCart}
               removeSingleProduct={removeSingleProduct}
             />
+            <Footer />
           </Route>
-          <Route path="/delivery">
+          <PrivateRoute path="/delivery">
             <Header cart={cart} />
-            <Delivery cart={cart}
-               deliveryInfo={deliveryInfo}
-               handleDeliveryInfo={handleDeliveryInfo}
-               handleUserEmail={handleUserEmail}
-               checkOutProduct={checkOutProduct}
-               clearCart={clearCart}
+            <Delivery
+              cart={cart}
+              removeAllCart={removeAllCart}
+              // deliveryInfo={deliveryInfo}
+              // handleDeliveryInfo={handleDeliveryInfo}
+              // handleUserEmail={handleUserEmail}
+              // checkOutProduct={checkOutProduct}
+              // clearCart={clearCart}
             />
-          </Route>
+            <Footer />
+          </PrivateRoute>
           <Route path="/signup">
             <Header cart={cart} />
             <SignUp />
+            <Footer />
           </Route>
           <Route path="/login">
             <Header cart={cart} />
             <Login />
+            <Footer />
           </Route>
           <Route path="/admin">
             <Navigation />
+            <Welcome/>
           </Route>
 
           <Route path="/add-products">
             <Navigation />
             <AddProduct />
+            <Footer />
           </Route>
           <Route path="/all-products">
             <Navigation />
             <ShowAllProduct />
+            <Footer />
           </Route>
           <Route path="*">
             <NotFound />

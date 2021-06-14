@@ -1,4 +1,3 @@
-
 .signup {
   min-height: 700px !important;
 }
@@ -7,7 +6,7 @@ form {
   max-width: 600px;
   margin: 0 auto;
 }
-.error-form{
+.error-form {
   color: red;
 }
 
@@ -17,7 +16,8 @@ form {
   font-size: 12px;
 }
 
-input , textarea {
+input,
+textarea {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -36,7 +36,7 @@ label {
   margin-top: 8px;
   color: green;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 pre {

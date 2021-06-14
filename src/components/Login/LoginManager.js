@@ -8,12 +8,12 @@ export const initializeFramework = () => {
   }
 };
 
-export const storeAuthToken = () => {
+const storeAuthToken = () => {
   firebase
     .auth()
     .currentUser.getIdToken(/* forceRefresh */ true)
     .then(function (idToken) {
-      // sessionStorage.setItem("token", JSON.stringify(idToken));
+      sessionStorage.setItem("token", idToken);
       console.log({ idToken: idToken });
     })
     .catch(function (error) {
@@ -31,6 +31,7 @@ export const googleSignIn = () => {
       const newUser = { ...user };
       newUser.username = user.displayName;
       storeAuthToken();
+      sessionStorage.setItem("email", newUser.email);
       console.log(newUser);
       return newUser;
     })
