@@ -23,7 +23,7 @@ const AddProduct = () => {
   // get functions to build form with useForm() hook
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
-
+  let history = useHistory();
   const handleFileChange = (event) => {
     //console.log(e.target.files[0]);
     console.log(event.target.files[0]);
@@ -51,7 +51,7 @@ const AddProduct = () => {
       description: data.description,
       img: imageURL,
     };
-    const url = `http://localhost:5200/add-products`;
+    const url = `https://fresh-valley-shop-server.herokuapp.com/add-products`;
 
     fetch(url, {
       method: "POST",
@@ -62,6 +62,7 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+      history.push("/all-products")
   };
 
   return (

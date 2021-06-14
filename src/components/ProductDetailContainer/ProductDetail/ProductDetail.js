@@ -27,7 +27,7 @@ const ProductDetail = ({ cart, addToCartProduct }) => {
 
   //get single product from database using id
   useEffect(() => {
-    fetch(`http://localhost:5200/singleProduct/${id}`)
+    fetch(`https://fresh-valley-shop-server.herokuapp.com/singleProduct/${id}`)
       .then((res) => res.json())
       .then((data) => setSingleProduct(data))
       .catch((err) => console.log(err));

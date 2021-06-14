@@ -7,7 +7,7 @@ const ShowAllProduct = () => {
   const [allPrd, setAllPrd] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5200/products")
+    fetch("https://fresh-valley-shop-server.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setAllPrd(data));
   }, []);
