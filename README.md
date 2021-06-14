@@ -13,7 +13,8 @@ A single page online shopping app where people are able to select products in th
 - Sign Up to place order
 - Pay online using your Stripe credit card
 - See Product Detail
-
+- Admin can add product , delete product and see all orders from users.
+- user will see order history
 ### Front-end Technology :
 
 - React.js
@@ -22,7 +23,6 @@ A single page online shopping app where people are able to select products in th
 - CSS3
 - Material UI
 - React Bootstrap
-- Ant Design
 - HTML
 
 ### Backend Technology
