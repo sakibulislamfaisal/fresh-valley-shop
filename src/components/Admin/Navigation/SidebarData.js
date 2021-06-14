@@ -2,7 +2,7 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
-import { faPersonBooth, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPersonBooth, faPlus, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const SidebarData = [
   {
@@ -23,12 +23,12 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
-  // {
-  //   title: "User SignUp",
-  //   path: "/signup",
-  //   icon: <FontAwesomeIcon icon={faPlus} />,
-  //   cName: "nav-text",
-  // },
+  {
+    title: "All Orders",
+    path: "/admin-all-orders",
+    icon: <FontAwesomeIcon icon={faShoppingBasket} />,
+    cName: "nav-text",
+  },
   // {
   //   title: "User Login",
   //   path: "/login",

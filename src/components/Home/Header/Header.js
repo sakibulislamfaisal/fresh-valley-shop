@@ -55,7 +55,7 @@ const Header = ({ cart }) => {
               </IconButton>
 
               {loggedInUser || sessionStorage.getItem("email") ? (
-                <Link style={style}>{loggedInUser.username}</Link>
+                <Link style={style}>{sessionStorage.getItem("email")}</Link>
               ) : (
                 <Link style={style}>{loggedInUser.displayName}</Link>
               )}
@@ -66,10 +66,10 @@ const Header = ({ cart }) => {
                 </NavDropdown>
               )} */}
 
-              {loggedInUser.email && sessionStorage.getItem("email") ? (
+              {sessionStorage.getItem("email") ? (
                 <Link style={style} to="/signup">
                   <button
-                    onClick={() => setLoggedInUser("")}
+                    onClick={() => sessionStorage.removeItem("email")}
                     className="bg-red-500 hover:bg-green-700 text-white  py-1 -mt-1 px-4 rounded-full "
                   >
                     SignOut

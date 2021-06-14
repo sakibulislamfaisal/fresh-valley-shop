@@ -1,28 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import { userContext } from "../../App";
 
-const Order = () => {
+const AllOrder = () => {
   const [order, setOrder] = useState([]);
-  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+
   useEffect(() => {
-    fetch(
-      "http://localhost:5200/orders?email=" + sessionStorage.getItem("email")
-    )
+    fetch("http://localhost:5200/all-orders")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, []);
-  console.log("orders", order);
+
+  const removeSingleProduct = (id) => {
+    const removeItem = order.filter((p) => p.id !== id);
+    setOrder(removeItem);
+  };
+
   return (
-    <div className="order-container">
-      <h3 className="font-bold text-indigo-700 text-center uppercase underline mt-3">
-        Your Order History
-      </h3>
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12">
-            {sessionStorage.getItem("email") && order && (
-              <Table responsive bordered striped hover>
+    <div>
+      <h3 className="text-center mb-4 underline">All Orders</h3>
+      <Table responsive bordered striped hover>
                 <thead>
                   <tr className="text-center hover:text-indigo-700">
                     <th>No</th>
@@ -66,12 +64,8 @@ const Order = () => {
                   })}
                 </tbody>
               </Table>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default Order;
+export default AllOrder;

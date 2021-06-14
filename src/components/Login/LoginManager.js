@@ -145,6 +145,7 @@ export const currentUser = () => {
   return firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       sessionStorage.setItem("email", user.email);
+     // sessionStorage.setItem("username", user.username);
     } else {
     }
   });

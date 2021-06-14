@@ -68,7 +68,7 @@ hr {
   flex-direction: row;
 }
 .change {
-  margin-left: 300px;
+  margin-left: 480px;
 }
 .google-icon {
   color: black;
@@ -84,4 +84,28 @@ hr {
 }
 .checkbox {
   margin-left: -180px !important;
+}
+
+@media (max-width: 575px) {
+  .change {
+    margin-left: 100px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .change {
+    margin-left: 100px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .change {
+    margin-left: 230px;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .change {
+    margin-left: 280px;
+  }
 }
