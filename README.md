@@ -6,6 +6,7 @@
 A single page online shopping app where people are able to select products in their cart and checkout the cart with their information.
 
 
+[Live Website](https://fresh-valley-shop-f8eda.web.app/) | [Live API Server](https://fresh-valley-shop-server.herokuapp.com/)
 ### Features
 
 - Order Products from the menu
