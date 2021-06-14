@@ -52,7 +52,8 @@ const ShowAllProduct = () => {
                 <td className="align-middle">${Number(product.price)}</td>
                 <td className="align-middle">
                   <FontAwesomeIcon
-                    onClick={() => removeSingleProduct(product.id)}
+                    
+                    // onClick={() => removeSingleProduct(product.id)}
                     className="text-pink-500 text-xl cursor-pointer"
                     icon={faTrash}
                   />

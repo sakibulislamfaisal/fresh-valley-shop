@@ -6,6 +6,7 @@ import { userContext } from "../../App";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import swal from "sweetalert";
+
 const Delivery = ({ cart, removeAllCart }) => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
   const [shipInfo, setShipInfo] = useState(null);
@@ -65,7 +66,7 @@ const Delivery = ({ cart, removeAllCart }) => {
       creation: new Date().toDateString(),
     };
     //console.log(data)
-    fetch("http://localhost:5200/submit-order", {
+    fetch("https://fresh-valley-shop-server.herokuapp.com/submit-order", {
       method: "POST",
       body: JSON.stringify(orderDetail),
       headers: {
@@ -75,11 +76,8 @@ const Delivery = ({ cart, removeAllCart }) => {
       .then((res) => res.json())
       .then((order) => {
         setOrderId(order._id);
-        swal({
-          title: "Good job!",
-          text: "Your Payment Was Successful!",
-          icon: "success",
-          button: "Thank You!",
+        swal("Good job!", "Your Payment is Successful", "success", {
+          button: "Thank You ",
         });
         removeAllCart();
         console.log(order);

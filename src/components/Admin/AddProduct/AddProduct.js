@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 const AddProduct = () => {
   const [imageURL, setImageURL] = useState(null);
   const validationSchema = Yup.object().shape({
-    id : Yup.number().positive().integer().required(),
+    id: Yup.number().positive().integer().required(),
     name: Yup.string().required(" Product Name is required!"),
     category: Yup.string().required("Product category is required!"),
     price: Yup.string().required("Product price is required!"),
@@ -44,7 +44,7 @@ const AddProduct = () => {
 
   const onSubmit = (data, event) => {
     const productData = {
-      id : data.id,
+      id: data.id,
       name: data.name,
       category: data.category,
       price: data.price,
@@ -62,7 +62,7 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
-      history.push("/all-products")
+    history.push("/all-products");
   };
 
   return (
@@ -70,7 +70,7 @@ const AddProduct = () => {
       <div className="container ">
         <h5 className="text-center">Add New Product</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
+          <div className="form-group">
             <div>
               <label>Product Name</label>
               <input
@@ -80,9 +80,7 @@ const AddProduct = () => {
                 className="placeholder-pink-700  "
                 placeholder="Enter Your Product Id"
               />
-              {errors.id && (
-                <p className="error-form">{errors.id.message}</p>
-              )}
+              {errors.id && <p className="error-form">{errors.id.message}</p>}
             </div>
           </div>
           <div className="form-group">
@@ -163,9 +161,15 @@ const AddProduct = () => {
           </div>
 
           <div className="form-group ">
-            <button className="bg-pink-700 text-white py-3 px-4  mt-3  rounded cart-add">
+            <button
+              className="bg-pink-700 text-white py-3 px-4  mt-3  rounded cart-add"
+              disabled
+            >
               <FontAwesomeIcon icon={faUserPlus} /> Add Product
             </button>
+            <p className="error-form">
+              Note : You can not add product because button is disabled!
+            </p>
           </div>
         </form>
       </div>
