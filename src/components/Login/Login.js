@@ -13,7 +13,7 @@ import {
   googleSignIn,
   initializeFramework,
   signInUser,
-  getCurrentUser,
+  getCurrentUser,currentUser
  
 } from "./LoginManager";
 
@@ -50,6 +50,7 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((response) => {
+      currentUser();
       setLoggedInUser(response);
       getCurrentUser(response);
     
@@ -73,8 +74,9 @@ const Login = () => {
     if (data.email && data.password) {
       signInUser(data.email, data.password).then((response) => {
         setUser(response);
+        currentUser();
         setLoggedInUser(response);
-        getCurrentUser(response);
+      
        
         history.replace(from);
       });

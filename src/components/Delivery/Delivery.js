@@ -53,6 +53,8 @@ const Delivery = ({ cart, removeAllCart }) => {
     setShipInfo(data);
   };
 
+  //const newCart = Object.setPrototypeOf(cart, Object.prototype);
+
   const handlePlaceOrder = (payment) => {
     const orderDetail = {
       email: loggedInUser.email,
@@ -90,10 +92,7 @@ const Delivery = ({ cart, removeAllCart }) => {
       <div className="container ">
         {/* <!--deliveryInfo start--> */}
         <div className="row">
-          <div
-            style={{ display: shipInfo &&  "none" }}
-            className="col-md-6"
-          >
+          <div style={{ display: shipInfo && "none" }} className="col-md-6">
             <h4 className="text-center">Edit Delivery Detail Info</h4>
             <hr className="border border-danger" />
             <form onSubmit={handleSubmit(onSubmit)}>

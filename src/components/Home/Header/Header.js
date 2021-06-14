@@ -54,7 +54,7 @@ const Header = ({ cart }) => {
                 </Badge>
               </IconButton>
 
-              {loggedInUser && loggedInUser.username ? (
+              {loggedInUser || sessionStorage.getItem("email") ? (
                 <Link style={style}>{loggedInUser.username}</Link>
               ) : (
                 <Link style={style}>{loggedInUser.displayName}</Link>
@@ -66,7 +66,7 @@ const Header = ({ cart }) => {
                 </NavDropdown>
               )} */}
 
-              {loggedInUser.email ? (
+              {loggedInUser.email && sessionStorage.getItem("email") ? (
                 <Link style={style} to="/signup">
                   <button
                     onClick={() => setLoggedInUser("")}

@@ -15,6 +15,7 @@ import {
   signUpNewUser,
   signInUser,
   updateUserProfile,
+  currentUser
 
 } from "./LoginManager";
 
@@ -59,14 +60,16 @@ const SignUp = () => {
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((response) => {
+      currentUser();
       setLoggedInUser(response);
-     
+      
       history.replace(from);
     });
   };
 
   const handleFacebookSignIn = () => {
     facebookSignIn().then((response) => {
+      currentUser();
       setLoggedInUser(response);
     
       history.replace(from);
@@ -105,6 +108,7 @@ const SignUp = () => {
         (res) => {
           setUser(res);
           updateUserProfile(res.username, res.email, res.password);
+          currentUser();
           setLoggedInUser(res);
          
           history.replace(from);
@@ -114,7 +118,9 @@ const SignUp = () => {
 
     if (!newUser && data.email && data.password) {
       signInUser(data.email, data.password).then((response) => {
+        
         setUser(response);
+        currentUser();
         setLoggedInUser(response);
         history.replace(from);
       });

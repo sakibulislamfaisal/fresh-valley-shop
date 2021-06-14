@@ -16,6 +16,7 @@ import Banner from "./components/Home/Banner/Banner";
 import SearchItemResult from "./components/SearchItemResult/SearchItemResult";
 import Footer from "./components/Footer/Footer";
 import Welcome from "./components/Admin/WelCome/Welcome";
+import Order from "./components/Order/Order";
 export const userContext = createContext();
 
 //get localStorage items
@@ -171,6 +172,11 @@ function App() {
             />
             <Footer />
           </PrivateRoute>
+          <Route path="/orders">
+            <Header cart={cart}></Header>
+            <Order></Order>
+            <Footer/>
+          </Route>
           <Route path="/signup">
             <Header cart={cart} />
             <SignUp />
@@ -183,7 +189,7 @@ function App() {
           </Route>
           <Route path="/admin">
             <Navigation />
-            <Welcome/>
+            <Welcome />
           </Route>
 
           <Route path="/add-products">

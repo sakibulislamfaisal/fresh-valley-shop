@@ -140,3 +140,12 @@ export const signUpNewUser = (username, email, confirmPassword) => {
       return newUserInfo;
     });
 };
+
+export const currentUser = () => {
+  return firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      sessionStorage.setItem("email", user.email);
+    } else {
+    }
+  });
+};
