@@ -15,8 +15,7 @@ import {
   signUpNewUser,
   signInUser,
   updateUserProfile,
-  currentUser
-
+  currentUser,
 } from "./LoginManager";
 
 const SignUp = () => {
@@ -62,7 +61,7 @@ const SignUp = () => {
     googleSignIn().then((response) => {
       currentUser();
       setLoggedInUser(response);
-      
+
       history.replace(from);
     });
   };
@@ -71,13 +70,10 @@ const SignUp = () => {
     facebookSignIn().then((response) => {
       currentUser();
       setLoggedInUser(response);
-    
+
       history.replace(from);
     });
   };
-
-
- 
 
   // const handleChange = (event) => {
   //   let isFieldValid = true;
@@ -110,7 +106,7 @@ const SignUp = () => {
           updateUserProfile(res.username, res.email, res.password);
           currentUser();
           setLoggedInUser(res);
-         
+
           history.replace(from);
         }
       );
@@ -118,7 +114,6 @@ const SignUp = () => {
 
     if (!newUser && data.email && data.password) {
       signInUser(data.email, data.password).then((response) => {
-        
         setUser(response);
         currentUser();
         setLoggedInUser(response);
@@ -141,7 +136,9 @@ const SignUp = () => {
                 className="placeholder-pink-700  "
                 placeholder="Enter Your Username"
               />
-              {errors.username && <p className="error-form">{errors.username.message}</p>}
+              {errors.username && (
+                <p className="error-form">{errors.username.message}</p>
+              )}
             </div>
           </div>
           <div className="form-group">
@@ -154,7 +151,9 @@ const SignUp = () => {
                 className="placeholder-pink-700  "
                 placeholder="Enter Your Email"
               />
-              {errors.email && <p className="error-form">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="error-form">{errors.email.message}</p>
+              )}
             </div>
           </div>
 
@@ -168,7 +167,9 @@ const SignUp = () => {
                 className="placeholder-pink-700  "
                 placeholder="Enter Your Password"
               />
-              {errors.password && <p className="error-form">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="error-form">{errors.password.message}</p>
+              )}
             </div>
           </div>
           <div className="form-group">
@@ -192,7 +193,7 @@ const SignUp = () => {
             </button>
           </div>
           <div className="text-indigo-700 text-xl font-bold  text-center ">
-            Already Have an Account go to{" "}
+            Or go to
             <Link to="/login">
               {" "}
               <label

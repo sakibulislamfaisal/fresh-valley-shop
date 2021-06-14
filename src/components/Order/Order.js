@@ -7,21 +7,22 @@ const Order = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
   useEffect(() => {
     fetch(
-      "https://fresh-valley-shop-server.herokuapp.com/orders?email=" + sessionStorage.getItem("email")
+      "https://fresh-valley-shop-server.herokuapp.com/orders?email=" +
+        sessionStorage.getItem("email")
     )
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, []);
   console.log("orders", order);
   return (
-    <div className="order-container">
+    <div className="order-container mb-5 pb-3">
       <h3 className="font-bold text-indigo-700 text-center uppercase underline mt-3">
         Your Order History
       </h3>
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12">
-            {sessionStorage.getItem("email") && order && (
+            {sessionStorage.getItem("email") && (
               <Table responsive bordered striped hover>
                 <thead>
                   <tr className="text-center hover:text-indigo-700">
