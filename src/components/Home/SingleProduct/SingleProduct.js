@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./SingleProduct.css";
 
 const SingleProduct = ({ product, cart, addToCartProduct }) => {
+  document.title = "Product Page";
   const styles = {
     textDecoration: "none",
     marginLeft: "30px",

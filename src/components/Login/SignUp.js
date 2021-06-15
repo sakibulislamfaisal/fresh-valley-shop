@@ -19,6 +19,7 @@ import {
 } from "./LoginManager";
 
 const SignUp = () => {
+  document.title = "Sign Up";
   const validationSchema = Yup.object().shape({
     username: Yup.string()
       .required("First Name is required!")

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const SearchProduct = ({ product, cart, addToCartProduct }) => {
+  document.title = "Search Product";
   const { id, name, description, price, img } = product;
   const styles = {
     textDecoration: "none",

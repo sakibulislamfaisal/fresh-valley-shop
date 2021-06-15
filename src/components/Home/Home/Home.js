@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Product from "../Product/Product";
 import Footer from "../../Footer/Footer";
 const Home = ({ cart, addToCartProduct }) => {
+  document.title = "Home Page";
   return (
     <>
       <Header cart={cart}></Header>

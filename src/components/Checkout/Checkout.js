@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./Checkout.css";
 
 const Checkout = ({ cart, removeAllCart, removeSingleProduct }) => {
+  document.title = "Product Checkout";
   // console.log("from checkout page", cart);
   const [update, setUpdate] = useState();
   const [updatePrice, setUpdatePrice] = useState();

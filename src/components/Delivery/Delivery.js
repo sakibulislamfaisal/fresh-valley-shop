@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import swal from "sweetalert";
 
 const Delivery = ({ cart, removeAllCart }) => {
+  document.title = "Product Delivery";
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
   const [shipInfo, setShipInfo] = useState(null);
   const [orderId, setOrderId] = useState(null);

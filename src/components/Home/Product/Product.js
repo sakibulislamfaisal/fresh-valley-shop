@@ -3,7 +3,7 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 
 const Product = ({ cart, addToCartProduct }) => {
   const [products, setProducts] = useState([]);
-
+  document.title = "Product Page";
   useEffect(() => {
     fetch("https://fresh-valley-shop-server.herokuapp.com/products")
       .then((res) => res.json())

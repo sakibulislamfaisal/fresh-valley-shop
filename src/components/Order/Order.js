@@ -4,6 +4,7 @@ import { userContext } from "../../App";
 
 const Order = () => {
   const [order, setOrder] = useState([]);
+  document.title = "Order";
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
   useEffect(() => {
     fetch(

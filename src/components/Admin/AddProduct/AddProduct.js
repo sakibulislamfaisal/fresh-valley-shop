@@ -9,6 +9,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 
 const AddProduct = () => {
+  document.title = "Add Product";
   const [imageURL, setImageURL] = useState(null);
   const validationSchema = Yup.object().shape({
     id: Yup.number().positive().integer().required(),

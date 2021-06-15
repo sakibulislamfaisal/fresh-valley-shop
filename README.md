@@ -1,7 +1,7 @@
 
 ![](https://i.ibb.co/FD42mTQ/Capture.png)
 
-<h1>### Fresh Valley Shop</h1>
+<h1>Fresh Valley Shop</h1>
 
 A single page online shopping app where people are able to select products in their cart and checkout the cart with their information.
 

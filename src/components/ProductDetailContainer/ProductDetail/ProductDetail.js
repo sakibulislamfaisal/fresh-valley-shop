@@ -8,6 +8,7 @@ import { useParams } from "react-router";
 import "./ProductDetail.css";
 // import AddToDatabase from "../../../Data/AddToDatabase";
 const ProductDetail = ({ cart, addToCartProduct }) => {
+  document.title = "Product Detail";
   const { id } = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);

@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 
 const ShowAllProduct = () => {
   const [allPrd, setAllPrd] = useState([]);
-
+  document.title = "Product All";
   useEffect(() => {
     fetch("https://fresh-valley-shop-server.herokuapp.com/products")
       .then((res) => res.json())
